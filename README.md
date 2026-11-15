@@ -71,7 +71,7 @@ on the installed integration.
 When upgrading from an older version, the separate editable period entities are automatically removed from the registry.
 Then turn on **Schedule control**.
 
-## Standard temperature mode
+### Standard temperature mode
 
 The **Standard temperature** sensor always displays the configured standard temperature, even when
 both control switches are off. Its value updates after saving a new standard temperature in Configure.
@@ -88,6 +88,16 @@ leaves the climate's current target unchanged. Turning the schedule back on imme
 current period. **Apply now** uses the standard temperature in constant mode; otherwise it applies
 the current scheduled period even if automatic control is off.
 
+The **Active period** sensor always shows the current enabled schedule period based on local time,
+even when schedule control is off and standard temperature control is on. It is unknown only when
+no periods are enabled. This does not change which temperature is applied to the climate entity.
+
+The **Scheduled temperature** sensor always displays the current enabled period's temperature,
+independently of both control switches. For a period using **Use standard temperature**, it displays
+the current standard temperature. If no periods are enabled, it is unknown. When schedule control
+is off, standard temperature control still applies the standard temperature to the climate entity;
+this does not change what the Scheduled temperature sensor displays.
+
 ### Use the standard temperature in a period
 
 In **Configure**, open a period and enable **Use standard temperature** instead of choosing a separate
@@ -96,6 +106,10 @@ changes saved through **Configure → Standard temperature**. The overview shows
 and marks it as standard. The period's own temperature is retained for use if this option is turned off.
 This option works independently of the switch controlling standard temperature when the schedule is off.
 Existing periods keep their own temperatures after an upgrade; this option defaults to off.
+
+On Home Assistant Core 2026.11 and newer, the period temperature slider hides immediately when
+**Use standard temperature** is enabled and reappears when it is disabled. The saved custom temperature
+is retained while using the standard temperature. Older Core versions keep the slider visible for compatibility.
 
 ## Data storage
 
@@ -124,17 +138,3 @@ To generate a coverage report:
 ```bash
 .venv/bin/pytest --cov --cov-report=term-missing
 ```
-
-The **Active period** sensor always shows the current enabled schedule period based on local time,
-even when schedule control is off and standard temperature control is on. It is unknown only when
-no periods are enabled. This does not change which temperature is applied to the climate entity.
-
-The **Scheduled temperature** sensor always displays the current enabled period's temperature,
-independently of both control switches. For a period using **Use standard temperature**, it displays
-the current standard temperature. If no periods are enabled, it is unknown. When schedule control
-is off, standard temperature control still applies the standard temperature to the climate entity;
-this does not change what the Scheduled temperature sensor displays.
-
-On Home Assistant Core 2026.11 and newer, the period temperature slider hides immediately when
-**Use standard temperature** is enabled and reappears when it is disabled. The saved custom temperature
-is retained while using the standard temperature. Older Core versions keep the slider visible for compatibility.
