@@ -5,7 +5,6 @@ from __future__ import annotations
 from collections.abc import Mapping
 from typing import Any, cast
 
-import voluptuous as vol
 from homeassistant import config_entries
 from homeassistant.components.climate.const import DOMAIN as CLIMATE_DOMAIN
 from homeassistant.components.climate.const import ClimateEntityFeature
@@ -28,6 +27,7 @@ from ..const import (
 from ..schedule_manager import ScheduleManager
 from .schedule_options_flow import ScheduleOptionsFlow
 from .typed_selector_module import TypedSelectorModule
+from . import flow_schema as vol
 
 
 _selector_module = cast(TypedSelectorModule, selector)

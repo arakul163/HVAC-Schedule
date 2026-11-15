@@ -6,7 +6,6 @@ from collections.abc import Mapping
 from datetime import time
 from typing import Any, cast
 
-import voluptuous as vol
 from homeassistant.config_entries import ConfigFlowResult, OptionsFlow
 from homeassistant.helpers import selector
 from homeassistant.helpers.translation import async_get_translations
@@ -30,6 +29,7 @@ from ..const import (
 from ..schedule import parse_time
 from ..schedule_manager import ScheduleManager
 from .typed_selector_module import TypedSelectorModule
+from . import flow_schema as vol
 
 
 _selector_module = cast(TypedSelectorModule, selector)
@@ -194,14 +194,16 @@ class ScheduleOptionsFlow(OptionsFlow):
                 if isinstance(raw_start, time)
                 else parse_time(str(raw_start)).replace(microsecond=0).isoformat()
             )
+            use_standard = bool(user_input.get(PERIOD_USE_STANDARD_TEMPERATURE, False))
+            temperature = float(period[PERIOD_TEMPERATURE])
+            if not use_standard:
+                temperature = float(user_input.get(PERIOD_TEMPERATURE, temperature))
             period.update(
                 {
                     PERIOD_ENABLED: bool(user_input[PERIOD_ENABLED]),
                     PERIOD_START: start,
-                    PERIOD_USE_STANDARD_TEMPERATURE: bool(user_input.get(PERIOD_USE_STANDARD_TEMPERATURE, False)),
-                    PERIOD_TEMPERATURE: self._align_temperature(
-                        float(user_input.get(PERIOD_TEMPERATURE, period[PERIOD_TEMPERATURE]))
-                    ),
+                    PERIOD_USE_STANDARD_TEMPERATURE: use_standard,
+                    PERIOD_TEMPERATURE: self._align_temperature(temperature),
                 }
             )
             return await self.async_step_overview()
@@ -222,9 +224,11 @@ class ScheduleOptionsFlow(OptionsFlow):
                         PERIOD_USE_STANDARD_TEMPERATURE,
                         default=bool(period.get(PERIOD_USE_STANDARD_TEMPERATURE, False)),
                     ): _BooleanSelector(),
-                    vol.Optional(
+                    vol.optional_when(
                         PERIOD_TEMPERATURE,
                         default=float(period[PERIOD_TEMPERATURE]),
+                        controlling_field=PERIOD_USE_STANDARD_TEMPERATURE,
+                        value=False,
                     ): _NumberSelector(
                         selector.NumberSelectorConfig(
                             min=self._minimum,

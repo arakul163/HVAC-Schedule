@@ -47,3 +47,7 @@ independently of both control switches. For a period using **Use standard temper
 the current standard temperature. If no periods are enabled, it is unknown. When schedule control
 is off, standard temperature control still applies the standard temperature to the climate entity;
 this does not change what the Scheduled temperature sensor displays.
+
+On Home Assistant Core 2026.11 and newer, the period temperature slider hides immediately when
+**Use standard temperature** is enabled and reappears when it is disabled. The saved custom temperature
+is retained while using the standard temperature. Older Core versions keep the slider visible for compatibility.

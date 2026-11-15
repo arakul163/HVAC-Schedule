@@ -2,6 +2,8 @@
 
 from collections.abc import Mapping
 from typing import Any, Protocol, cast
+
+import pytest
 from unittest.mock import patch
 
 from homeassistant.components.climate.const import ClimateEntityFeature
@@ -330,7 +332,10 @@ async def test_options_flow_edits_periods_but_not_target(
     }
 
 
-async def test_period_can_follow_standard_temperature(hass: HomeAssistant) -> None:
+@pytest.mark.parametrize("submitted_temperature", [None, 40.0])
+async def test_period_can_follow_standard_temperature(
+    hass: HomeAssistant, submitted_temperature: float | None,
+) -> None:
     """Link a period without entering a temperature and retain its custom value."""
     _set_target(hass)
     entry = MockConfigEntry(
@@ -348,10 +353,13 @@ async def test_period_can_follow_standard_temperature(hass: HomeAssistant) -> No
     flow = _flow_manager(hass.config_entries.options)
     result = await hass.config_entries.options.async_init(entry.entry_id)
     result = await flow.async_configure(result["flow_id"], {"next_step_id": "period_1"})
-    result = await flow.async_configure(result["flow_id"], {
+    period_input: dict[str, Any] = {
         PERIOD_ENABLED: True, PERIOD_START: "06:00:00",
         PERIOD_USE_STANDARD_TEMPERATURE: True,
-    })
+    }
+    if submitted_temperature is not None:
+        period_input[PERIOD_TEMPERATURE] = submitted_temperature
+    result = await flow.async_configure(result["flow_id"], period_input)
     assert "Standard temperature: 26 °C" in _menu_options(result)["period_1"]
     result = await flow.async_configure(result["flow_id"], {"next_step_id": "standard_temperature"})
     result = await flow.async_configure(result["flow_id"], {CONF_STANDARD_TEMPERATURE: 28.0})
