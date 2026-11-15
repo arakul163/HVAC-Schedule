@@ -1,0 +1,1 @@
+"""Entities for HVAC Schedule."""

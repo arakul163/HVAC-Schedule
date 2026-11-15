@@ -1,0 +1,7 @@
+.venv/
+.vscode/
+.coverage
+.pytest_cache/
+__pycache__/
+*.py[cod]
+*.zip

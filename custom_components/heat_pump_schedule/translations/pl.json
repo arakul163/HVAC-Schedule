@@ -1,0 +1,140 @@
+{
+  "title": "Harmonogram HVAC",
+  "device": {
+    "schedule": {
+      "name": "Harmonogram HVAC · {target}"
+    }
+  },
+  "entity": {
+    "button": {
+      "apply_now": {
+        "name": "Zastosuj teraz"
+      }
+    },
+    "sensor": {
+      "active_period": {
+        "name": "Aktywny okres"
+      },
+      "last_sync_check": {
+        "name": "Ostatnia kontrola synchronizacji temperatur"
+      },
+      "last_temperature_sent": {
+        "name": "Ostatnie wysłanie temperatury przez Modbus"
+      },
+      "period_summary": {
+        "name": "Okres {period} · {start} — {temperature} {unit}",
+        "state": {
+          "active": "Aktywny",
+          "disabled": "Wyłączony"
+        }
+      },
+      "schedule_status": {
+        "name": "Stan harmonogramu",
+        "state": {
+          "active": "Aktywny",
+          "disabled": "Wyłączony",
+          "error": "Błąd",
+          "no_enabled_periods": "Brak włączonych okresów",
+          "target_unavailable": "Encja docelowa jest niedostępna",
+          "standard_temperature": "Temperatura standardowa"
+        }
+      },
+      "scheduled_temperature": {
+        "name": "Temperatura według harmonogramu"
+      },
+      "standard_temperature": {
+        "name": "Temperatura standardowa"
+      }
+    },
+    "switch": {
+      "schedule_enabled": {
+        "name": "Sterowanie według harmonogramu"
+      },
+      "standard_temperature_enabled": {
+        "name": "Używaj temperatury standardowej po wyłączeniu harmonogramu"
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Instalacja harmonogramu HVAC",
+        "description": "Wybierz encję climate, którą będzie sterował ten harmonogram. Aby utworzyć harmonogram dla innej encji, dodaj integrację ponownie.",
+        "data": {
+          "target_entity": "Encja climate",
+          "period_count": "Liczba okresów w ciągu doby"
+        },
+        "data_description": {
+          "target_entity": "Encja docelowa musi obsługiwać ustawianie pojedynczej temperatury docelowej.",
+          "period_count": "Dla każdego okresu zostanie utworzony osobny czas rozpoczęcia i temperatura."
+        }
+      },
+      "standard_temperature": {
+        "title": "Temperatura standardowa",
+        "description": "Używana przy wyłączonym harmonogramie, gdy przełącznik temperatury standardowej jest włączony. Po instalacji oba przełączniki są wyłączone.",
+        "data": {
+          "standard_temperature": "Temperatura standardowa"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "Wybrana encja jest niedostępna.",
+      "target_temperature_not_supported": "Wybrana encja nie obsługuje temperatury docelowej."
+    },
+    "abort": {
+      "already_configured": "Dla tej encji climate jest już zainstalowany harmonogram."
+    }
+  },
+  "options": {
+    "step": {
+      "overview": {
+        "title": "Okresy harmonogramu",
+        "description": "Encja docelowa: {target}. Wybierz okres, aby go zmienić. Encja jest przypisana na stałe, a zmiany zostaną zastosowane dopiero po wybraniu opcji „Zapisz zmiany”.",
+        "menu_options": {
+          "period_1": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_2": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_3": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_4": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_5": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_6": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_7": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_8": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_9": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_10": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_11": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_12": "Okres {number} · {start} — {temperature} {unit} ({state})",
+          "period_count": "Liczba okresów: {count}",
+          "save": "Zapisz zmiany",
+          "standard_temperature": "Temperatura standardowa: {temperature} {unit}"
+        }
+      },
+      "period_count": {
+        "title": "Liczba okresów",
+        "description": "Encja docelowa: {target}. Zmniejszenie liczby usunie ostatnie okresy.",
+        "data": {
+          "period_count": "Łączna liczba okresów w ciągu doby"
+        }
+      },
+      "period": {
+        "title": "Okres {number}",
+        "description": "Zmień stan, czas rozpoczęcia i temperaturę docelową okresu, a następnie wróć do listy okresów.",
+        "data": {
+          "enabled": "Używaj tego okresu",
+          "start": "Czas rozpoczęcia",
+          "temperature": "Temperatura docelowa",
+          "use_standard_temperature": "Używaj temperatury standardowej"
+        },
+        "data_description": {
+          "use_standard_temperature": "Po włączeniu okres używa temperatury standardowej zamiast własnej temperatury. Działa niezależnie od przełącznika temperatury standardowej przy wyłączonym harmonogramie."
+        }
+      },
+      "standard_temperature": {
+        "title": "Temperatura standardowa",
+        "description": "Używana przy wyłączonym harmonogramie, gdy przełącznik temperatury standardowej jest włączony. Po instalacji oba przełączniki są wyłączone.",
+        "data": {
+          "standard_temperature": "Temperatura standardowa"
+        }
+      }
+    }
+  }
+}

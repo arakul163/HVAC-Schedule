@@ -1,0 +1,140 @@
+{
+  "title": "HVAC Schedule",
+  "device": {
+    "schedule": {
+      "name": "HVAC Schedule · {target}"
+    }
+  },
+  "entity": {
+    "button": {
+      "apply_now": {
+        "name": "Apply now"
+      }
+    },
+    "sensor": {
+      "active_period": {
+        "name": "Active period"
+      },
+      "last_sync_check": {
+        "name": "Last temperature synchronization check"
+      },
+      "last_temperature_sent": {
+        "name": "Last temperature sent via Modbus"
+      },
+      "period_summary": {
+        "name": "Period {period} · {start} — {temperature} {unit}",
+        "state": {
+          "active": "Active",
+          "disabled": "Disabled"
+        }
+      },
+      "schedule_status": {
+        "name": "Schedule status",
+        "state": {
+          "active": "Active",
+          "disabled": "Disabled",
+          "error": "Error",
+          "no_enabled_periods": "No enabled periods",
+          "target_unavailable": "Target unavailable",
+          "standard_temperature": "Standard temperature"
+        }
+      },
+      "scheduled_temperature": {
+        "name": "Scheduled temperature"
+      },
+      "standard_temperature": {
+        "name": "Standard temperature"
+      }
+    },
+    "switch": {
+      "schedule_enabled": {
+        "name": "Schedule control"
+      },
+      "standard_temperature_enabled": {
+        "name": "Use standard temperature when schedule is off"
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Install HVAC Schedule",
+        "description": "Select the climate entity this schedule will control. Add the integration again to install a schedule for another entity.",
+        "data": {
+          "target_entity": "Climate entity",
+          "period_count": "Number of daily periods"
+        },
+        "data_description": {
+          "target_entity": "The target must support setting a single target temperature.",
+          "period_count": "Creates this many independently editable start times and temperatures."
+        }
+      },
+      "standard_temperature": {
+        "title": "Standard temperature",
+        "description": "Used while the schedule is off and the standard temperature switch is on. Both switches are off after installation.",
+        "data": {
+          "standard_temperature": "Standard temperature"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "The selected entity is unavailable.",
+      "target_temperature_not_supported": "The selected entity does not support a target temperature."
+    },
+    "abort": {
+      "already_configured": "A schedule is already installed for this climate entity."
+    }
+  },
+  "options": {
+    "step": {
+      "overview": {
+        "title": "Schedule periods",
+        "description": "Target: {target}. Select a period to edit it. The target is fixed, and changes are applied only after you select Save changes.",
+        "menu_options": {
+          "period_1": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_2": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_3": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_4": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_5": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_6": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_7": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_8": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_9": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_10": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_11": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_12": "Period {number} · {start} — {temperature} {unit} ({state})",
+          "period_count": "Number of periods: {count}",
+          "save": "Save changes",
+          "standard_temperature": "Standard temperature: {temperature} {unit}"
+        }
+      },
+      "period_count": {
+        "title": "Number of periods",
+        "description": "Target: {target}. Reducing the number removes the last periods.",
+        "data": {
+          "period_count": "Total number of daily periods"
+        }
+      },
+      "period": {
+        "title": "Period {number}",
+        "description": "Change this period's state, start time, and target temperature, then return to the period list.",
+        "data": {
+          "enabled": "Use this period",
+          "start": "Start time",
+          "temperature": "Target temperature",
+          "use_standard_temperature": "Use standard temperature"
+        },
+        "data_description": {
+          "use_standard_temperature": "When enabled, this period follows the standard temperature. Its own target temperature is ignored. This works independently of the switch for standard temperature when the schedule is off."
+        }
+      },
+      "standard_temperature": {
+        "title": "Standard temperature",
+        "description": "Used while the schedule is off and the standard temperature switch is on. Both switches are off after installation.",
+        "data": {
+          "standard_temperature": "Standard temperature"
+        }
+      }
+    }
+  }
+}

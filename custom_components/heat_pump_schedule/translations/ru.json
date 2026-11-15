@@ -1,0 +1,140 @@
+{
+  "title": "Расписание HVAC",
+  "device": {
+    "schedule": {
+      "name": "Расписание HVAC · {target}"
+    }
+  },
+  "entity": {
+    "button": {
+      "apply_now": {
+        "name": "Применить сейчас"
+      }
+    },
+    "sensor": {
+      "active_period": {
+        "name": "Активный период"
+      },
+      "last_sync_check": {
+        "name": "Последняя проверка синхронизации температур"
+      },
+      "last_temperature_sent": {
+        "name": "Последняя отправка температуры в Modbus"
+      },
+      "period_summary": {
+        "name": "Период {period} · {start} — {temperature} {unit}",
+        "state": {
+          "active": "Активен",
+          "disabled": "Отключён"
+        }
+      },
+      "schedule_status": {
+        "name": "Статус расписания",
+        "state": {
+          "active": "Активен",
+          "disabled": "Отключён",
+          "error": "Ошибка",
+          "no_enabled_periods": "Нет включённых периодов",
+          "target_unavailable": "Целевая сущность недоступна",
+          "standard_temperature": "Стандартная температура"
+        }
+      },
+      "scheduled_temperature": {
+        "name": "Температура по расписанию"
+      },
+      "standard_temperature": {
+        "name": "Стандартная температура"
+      }
+    },
+    "switch": {
+      "schedule_enabled": {
+        "name": "Управление по расписанию"
+      },
+      "standard_temperature_enabled": {
+        "name": "Стандартная температура при выключенном расписании"
+      }
+    }
+  },
+  "config": {
+    "step": {
+      "user": {
+        "title": "Установка расписания HVAC",
+        "description": "Выберите climate-сущность, которой будет управлять это расписание. Чтобы создать расписание для другой сущности, добавьте интеграцию повторно.",
+        "data": {
+          "target_entity": "Climate-сущность",
+          "period_count": "Количество периодов в сутки"
+        },
+        "data_description": {
+          "target_entity": "Сущность должна поддерживать установку одной целевой температуры.",
+          "period_count": "Для каждого периода будут созданы отдельные время начала и температура."
+        }
+      },
+      "standard_temperature": {
+        "title": "Стандартная температура",
+        "description": "Используется при выключенном расписании, если включён переключатель стандартной температуры. После установки оба переключателя выключены.",
+        "data": {
+          "standard_temperature": "Стандартная температура"
+        }
+      }
+    },
+    "error": {
+      "entity_not_found": "Выбранная сущность недоступна.",
+      "target_temperature_not_supported": "Выбранная сущность не поддерживает целевую температуру."
+    },
+    "abort": {
+      "already_configured": "Для этой climate-сущности расписание уже установлено."
+    }
+  },
+  "options": {
+    "step": {
+      "overview": {
+        "title": "Периоды расписания",
+        "description": "Целевая сущность: {target}. Выберите период, чтобы изменить его. Сущность зафиксирована, а изменения применятся только после выбора пункта «Сохранить изменения».",
+        "menu_options": {
+          "period_1": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_2": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_3": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_4": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_5": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_6": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_7": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_8": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_9": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_10": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_11": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_12": "Период {number} · {start} — {temperature} {unit} ({state})",
+          "period_count": "Количество периодов: {count}",
+          "save": "Сохранить изменения",
+          "standard_temperature": "Стандартная температура: {temperature} {unit}"
+        }
+      },
+      "period_count": {
+        "title": "Количество периодов",
+        "description": "Целевая сущность: {target}. При уменьшении количества последние периоды будут удалены.",
+        "data": {
+          "period_count": "Общее количество периодов в сутки"
+        }
+      },
+      "period": {
+        "title": "Период {number}",
+        "description": "Измените состояние, время начала и целевую температуру периода, а затем вернитесь к списку периодов.",
+        "data": {
+          "enabled": "Использовать период",
+          "start": "Время начала",
+          "temperature": "Целевая температура",
+          "use_standard_temperature": "Использовать стандартную температуру"
+        },
+        "data_description": {
+          "use_standard_temperature": "Если включено, период использует стандартную температуру, а собственная температура игнорируется. Работает независимо от переключателя стандартной температуры при выключенном расписании."
+        }
+      },
+      "standard_temperature": {
+        "title": "Стандартная температура",
+        "description": "Используется при выключенном расписании, если включён переключатель стандартной температуры. После установки оба переключателя выключены.",
+        "data": {
+          "standard_temperature": "Стандартная температура"
+        }
+      }
+    }
+  }
+}
